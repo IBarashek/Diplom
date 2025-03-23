@@ -9,6 +9,15 @@
       Title="Authorization">
 
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="4*"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="1">
+            <TextBox x:Name="TxbLogin"/>
+            <PasswordBox x:Name ="PwbPassword"/>
+            <Button x:Name="BtnEnter"/>
+        </StackPanel>
     </Grid>
 </Page>

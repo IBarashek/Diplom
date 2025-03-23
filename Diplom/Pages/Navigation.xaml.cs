@@ -12,18 +12,25 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Diplom.Pages;
 
-namespace Diplom
+
+namespace Diplom.Pages
 {
     /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
+    /// Логика взаимодействия для Navigation.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class Navigation : Page
     {
-        public MainWindow()
+        public Navigation()
         {
             InitializeComponent();
-            Hello.NavigationService.Navigate(new Pages.Navigation());
+            MainFrame.NavigationService.Navigate(new AuthRegGuest());
+        }
+
+        private void Authorization_Click(object sender, RoutedEventArgs e)
+        {
+            MainFrame.NavigationService.Navigate(new AuthRegGuest());
         }
     }
 }
