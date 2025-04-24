@@ -11,11 +11,10 @@
         <Style TargetType="Button">
             <Setter Property="Width" Value="50"/>
             <Setter Property="Height" Value="50"/>
-            <Setter Property="Margin" Value="10"/>
-            <Setter Property="Background" Value="LightGray"/>
+            <Setter Property="Margin" Value="13"/>
         </Style>
     </Page.Resources>
-    <Grid Background="White">
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="14*"/>
             <RowDefinition Height="2*"/>
