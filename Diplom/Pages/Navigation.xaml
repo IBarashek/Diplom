@@ -5,13 +5,14 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Diplom.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="800" d:DesignWidth="1700"
       Title="Navigation">
     <Page.Resources>
         <Style TargetType="Button">
-            <Setter Property="Width" Value="50"/>
-            <Setter Property="Height" Value="50"/>
-            <Setter Property="Margin" Value="13"/>
+            <Setter Property="Width" Value="200"/>
+            <Setter Property="Height" Value="60"/>
+            <Setter Property="Margin" Value="15"/>
+            <Setter Property="FontSize" Value="15"/>
         </Style>
     </Page.Resources>
     <Grid>
@@ -20,28 +21,28 @@
             <RowDefinition Height="2*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="10*"/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="12*"/>
         </Grid.ColumnDefinitions>
         <Frame x:Name="NavigatedFrame" Grid.Column="1"/>
-        <StackPanel Grid.RowSpan="2" Background="WhiteSmoke"  >
+        <StackPanel Grid.RowSpan="2" Background="WhiteSmoke" VerticalAlignment="Stretch"  HorizontalAlignment="Stretch">
             <Button x:Name="BtnProfile" >
-                <Image/>
+                Профиль
             </Button>
             <Button x:Name="BtnFavorites" >
-                <Image/>
+                Любимые места
             </Button>
             <Button x:Name="BtnSearch" >
-                <Image/>
+                Поиск
             </Button>
             <Button x:Name="BtnSightseeing" >
-                <Image/>
+                Эккскурсии
             </Button>
             <Button x:Name="BtnCalendar" >
-                <Image/>
+                Календарь
             </Button>
             <Button x:Name="BtnSettings" >
-                <Image/>
+                Настройки
             </Button>
         </StackPanel>
     </Grid>

@@ -5,19 +5,20 @@
              StartupUri="MainWindow.xaml">
     <Application.Resources>
         <Style TargetType="TextBox">
-            <Setter Property="Width" Value="200"/>
-            <Setter Property="Height" Value="30"/>
+            <Setter Property="Width" Value="300"/>
+            <Setter Property="Height" Value="40"/>
             <Setter Property="Margin" Value="5"/>
         </Style>
         <Style TargetType="PasswordBox">
-            <Setter Property="Width" Value="200"/>
-            <Setter Property="Height" Value="30"/>
+            <Setter Property="Width" Value="300"/>
+            <Setter Property="Height" Value="40"/>
             <Setter Property="Margin" Value="5"/>
         </Style>
         <Style TargetType="Button">
-            <Setter Property="Width" Value="150"/>
-            <Setter Property="Height" Value="40"/>
-            <Setter Property="Margin" Value="10"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="Width" Value="250"/>
+            <Setter Property="Height" Value="50"/>
+            <Setter Property="Margin" Value="15"/>
             <Setter Property="Background" Value="LightGray"/>
         </Style>
         <Style TargetType="Grid">

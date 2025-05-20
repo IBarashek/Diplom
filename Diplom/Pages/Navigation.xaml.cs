@@ -25,7 +25,7 @@ namespace Diplom.Pages
         public Navigation()
         {
             InitializeComponent();
-
+            NavigatedFrame.NavigationService.Navigate(new Authorization());
         }
 
         private void Authorization_Click(object sender, RoutedEventArgs e)

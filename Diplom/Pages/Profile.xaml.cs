@@ -1,4 +1,4 @@
-﻿ using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace Diplom.Pages
 {
     /// <summary>
-    /// Логика взаимодействия для Authorization.xaml
+    /// Логика взаимодействия для Profile.xaml
     /// </summary>
-    public partial class Authorization : Page
+    public partial class Profile : Page
     {
-        public Authorization()
+        public Profile()
         {
             InitializeComponent();
         }
