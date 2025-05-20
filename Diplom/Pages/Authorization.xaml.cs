@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Diplom.Classes;
+using Diplom.Pages;
 
 namespace Diplom.Pages
 {
@@ -23,6 +25,30 @@ namespace Diplom.Pages
         public Authorization()
         {
             InitializeComponent();
+        }
+
+        private void Authorization_Click(object sender, RoutedEventArgs e)
+        {
+            string login =  TxbLogin.Text;
+            string password = PwbPassword.Password;
+            if(!String.IsNullOrEmpty(login) && !String.IsNullOrEmpty(password))
+            {
+                ConnectionClass.currentUser = ConnectionClass.entities.User.Where(x =>  x.Login == login && x.Password == password).FirstOrDefault();
+                if (ConnectionClass.currentUser != null)
+                {
+                    MessageBox.Show("Авторизация прошла успешно");
+                    NavigationService.Navigate(new Profile());
+                }
+                else
+                {
+                    MessageBox.Show("Пользователь не найден");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Не все поля ззаполнены!");
+            }
+
         }
     }
 }

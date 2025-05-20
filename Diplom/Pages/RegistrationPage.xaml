@@ -23,8 +23,10 @@
                 <PasswordBox x:Name ="PwbPassword"/>
                 <TextBlock Text="Повторите пароль:" FontSize="20" HorizontalAlignment="Left" Margin="10" Foreground="DarkGray" />
                 <PasswordBox x:Name ="PwbPassword2"/>
-                <Button x:Name="BtnEnter" Content="Войти" Foreground="DarkGray"/>
-
+                <Button x:Name="BtnEnter" Content="Войти" Foreground="DarkGray" Click="BtnRegistration_Click"/>
+                <TextBlock Margin="5" HorizontalAlignment="Center">
+     <Hyperlink NavigateUri="authorization.xaml">Авторизация</Hyperlink>
+                </TextBlock>
             </StackPanel>
         </Border>
 

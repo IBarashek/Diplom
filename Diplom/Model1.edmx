@@ -1,0 +1,246 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище KazanSightModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="FavoritesKazanSight">
+          <Key>
+            <PropertyRef Name="Id_Favorites" />
+          </Key>
+          <Property Name="Id_Favorites" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id_User" Type="int" Nullable="false" />
+          <Property Name="Id_Sight" Type="int" Nullable="false" />
+          <Property Name="IsChosen" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="KazanSight">
+          <Key>
+            <PropertyRef Name="Id_Sight" />
+          </Key>
+          <Property Name="Id_Sight" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="300" />
+          <Property Name="Image" Type="nvarchar" MaxLength="300" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id_User" />
+          </Key>
+          <Property Name="Id_User" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Login" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Patronymic" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Image" Type="nvarchar" MaxLength="300" />
+        </EntityType>
+        <Association Name="FK_FavoritesKazanSight_KazanSight">
+          <End Role="KazanSight" Type="Self.KazanSight" Multiplicity="1" />
+          <End Role="FavoritesKazanSight" Type="Self.FavoritesKazanSight" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KazanSight">
+              <PropertyRef Name="Id_Sight" />
+            </Principal>
+            <Dependent Role="FavoritesKazanSight">
+              <PropertyRef Name="Id_Sight" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FavoritesKazanSight_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="FavoritesKazanSight" Type="Self.FavoritesKazanSight" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id_User" />
+            </Principal>
+            <Dependent Role="FavoritesKazanSight">
+              <PropertyRef Name="Id_User" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище KazanSightModelContainer">
+          <EntitySet Name="FavoritesKazanSight" EntityType="Self.FavoritesKazanSight" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="KazanSight" EntityType="Self.KazanSight" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_FavoritesKazanSight_KazanSight" Association="Self.FK_FavoritesKazanSight_KazanSight">
+            <End Role="KazanSight" EntitySet="KazanSight" />
+            <End Role="FavoritesKazanSight" EntitySet="FavoritesKazanSight" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FavoritesKazanSight_User" Association="Self.FK_FavoritesKazanSight_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="FavoritesKazanSight" EntitySet="FavoritesKazanSight" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="KazanSightModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="FavoritesKazanSight">
+          <Key>
+            <PropertyRef Name="Id_Favorites" />
+          </Key>
+          <Property Name="Id_Favorites" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id_User" Type="Int32" Nullable="false" />
+          <Property Name="Id_Sight" Type="Int32" Nullable="false" />
+          <Property Name="IsChosen" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="KazanSight" Relationship="Self.FK_FavoritesKazanSight_KazanSight" FromRole="FavoritesKazanSight" ToRole="KazanSight" />
+          <NavigationProperty Name="User" Relationship="Self.FK_FavoritesKazanSight_User" FromRole="FavoritesKazanSight" ToRole="User" />
+        </EntityType>
+        <EntityType Name="KazanSight">
+          <Key>
+            <PropertyRef Name="Id_Sight" />
+          </Key>
+          <Property Name="Id_Sight" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="Image" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="FavoritesKazanSight" Relationship="Self.FK_FavoritesKazanSight_KazanSight" FromRole="KazanSight" ToRole="FavoritesKazanSight" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id_User" />
+          </Key>
+          <Property Name="Id_User" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Patronymic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Image" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="FavoritesKazanSight" Relationship="Self.FK_FavoritesKazanSight_User" FromRole="User" ToRole="FavoritesKazanSight" />
+        </EntityType>
+        <Association Name="FK_FavoritesKazanSight_KazanSight">
+          <End Role="KazanSight" Type="Self.KazanSight" Multiplicity="1" />
+          <End Role="FavoritesKazanSight" Type="Self.FavoritesKazanSight" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KazanSight">
+              <PropertyRef Name="Id_Sight" />
+            </Principal>
+            <Dependent Role="FavoritesKazanSight">
+              <PropertyRef Name="Id_Sight" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FavoritesKazanSight_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="FavoritesKazanSight" Type="Self.FavoritesKazanSight" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id_User" />
+            </Principal>
+            <Dependent Role="FavoritesKazanSight">
+              <PropertyRef Name="Id_User" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="KazanSightEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="FavoritesKazanSight" EntityType="Self.FavoritesKazanSight" />
+          <EntitySet Name="KazanSight" EntityType="Self.KazanSight" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="User" EntityType="Self.User" />
+          <AssociationSet Name="FK_FavoritesKazanSight_KazanSight" Association="Self.FK_FavoritesKazanSight_KazanSight">
+            <End Role="KazanSight" EntitySet="KazanSight" />
+            <End Role="FavoritesKazanSight" EntitySet="FavoritesKazanSight" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FavoritesKazanSight_User" Association="Self.FK_FavoritesKazanSight_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="FavoritesKazanSight" EntitySet="FavoritesKazanSight" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище KazanSightModelContainer" CdmEntityContainer="KazanSightEntities">
+          <EntitySetMapping Name="FavoritesKazanSight">
+            <EntityTypeMapping TypeName="KazanSightModel.FavoritesKazanSight">
+              <MappingFragment StoreEntitySet="FavoritesKazanSight">
+                <ScalarProperty Name="Id_Favorites" ColumnName="Id_Favorites" />
+                <ScalarProperty Name="Id_User" ColumnName="Id_User" />
+                <ScalarProperty Name="Id_Sight" ColumnName="Id_Sight" />
+                <ScalarProperty Name="IsChosen" ColumnName="IsChosen" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="KazanSight">
+            <EntityTypeMapping TypeName="KazanSightModel.KazanSight">
+              <MappingFragment StoreEntitySet="KazanSight">
+                <ScalarProperty Name="Id_Sight" ColumnName="Id_Sight" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="KazanSightModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User">
+            <EntityTypeMapping TypeName="KazanSightModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="Id_User" ColumnName="Id_User" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

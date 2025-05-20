@@ -7,7 +7,12 @@
       mc:Ignorable="d" 
      d:DesignHeight="800" d:DesignWidth="1500"
       Title="Profile">
-
+    <Page.Resources>
+        <Style TargetType="TextBlock" >
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="Margin" Value="10"/>
+        </Style>
+        </Page.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="4*"/>
@@ -17,7 +22,7 @@
             <Button/>
         </StackPanel>
         <StackPanel Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-            <Image Margin="50" Height =" 300" Width="300"/>
+            <Image x:Name="ImgUser" Margin="50" Height =" 300" Width="300"/>
             <TextBlock x:Name="TxtLogin"/>
             <TextBlock x:Name="TxtName"/>
             <TextBlock x:Name="TxtPatronymic"/>

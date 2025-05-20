@@ -14,17 +14,17 @@
             <RowDefinition Height="5*"/>
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-            <TextBox x:Name ="TxbSearch" Width="1200" Height="50" Margin="30"/>
-            <Button x:Name="BtnSearch" Content="Поиск" Width="100"/>
+            <TextBox x:Name ="TxbSearch" Width="1000" Height="50" Margin="30" TextChanged="textChanged"/>
+            <Button x:Name="BtnSearch" Content="Поиск" Width="100" Click="Search_Click"/>
         </StackPanel>
-        <ListView Grid.Row="1">
+        <ListView Grid.Row="1" x:Name="LstSight" ItemsSource="{Binding KazanSight}">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
-                        <Image />
+                    <StackPanel Orientation="Horizontal" >
+                        <Image Source="{Binding Image}"/>
                         <StackPanel>
-                            <TextBlock Text="{Binding}"/>
-                            <TextBlock Text="{Binding}"/>
+                            <TextBlock Text="{Binding Name}"/>
+                            <TextBlock Text="{Binding Description}"/>  <!--переделать на краткое описание-->
                         </StackPanel>
                         <Button x:Name="LikeClick" Content="В любимое"/>
                     </StackPanel>

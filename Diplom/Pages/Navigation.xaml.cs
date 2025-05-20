@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Diplom.Pages;
+using Diplom.Classes;
 
 
 namespace Diplom.Pages
@@ -31,6 +32,43 @@ namespace Diplom.Pages
         private void Authorization_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void Profile_Click(object sender, RoutedEventArgs e)
+        {
+            if(ConnectionClass.currentUser != null)
+            {
+                NavigatedFrame.NavigationService.Navigate(new Profile());
+            }
+            else
+            {
+                NavigatedFrame.NavigationService.Navigate(new Authorization());
+            }
+        }
+
+        private void Favorites_Click(object sender, RoutedEventArgs e)
+        {
+            NavigatedFrame.NavigationService.Navigate(new Favorites());
+        }
+
+        private void Search_Click(object sender, RoutedEventArgs e)
+        {
+            NavigatedFrame.NavigationService.Navigate(new Search());
+        }
+
+        private void Sightseeing_Click(object sender, RoutedEventArgs e)
+        {
+            //туры и бла бла бла
+        }
+
+        private void Calendar_Click(object sender, RoutedEventArgs e)
+        {
+            //расписание по турам
+        }
+
+        private void Settings_Click(object sender, RoutedEventArgs e)
+        {
+            //настройки, не знаю понадобятся ли они вообще
         }
     }
 }

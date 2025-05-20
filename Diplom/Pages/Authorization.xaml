@@ -22,7 +22,7 @@
                 <TextBox x:Name="TxbLogin"/>
                 <TextBlock Text="Введите пароль:" FontSize="20" HorizontalAlignment="Left" Margin="10" Foreground="DarkGray" />
                 <PasswordBox x:Name ="PwbPassword"/>
-                <Button x:Name="BtnEnter" Content="Войти" Foreground="DarkGray"/>
+                <Button x:Name="BtnEnter" Content="Войти" Foreground="DarkGray" Click="Authorization_Click"/>
                 <TextBlock Margin="5" HorizontalAlignment="Center">
                     <Hyperlink NavigateUri="registrationpage.xaml">Регистрация</Hyperlink>
                     </TextBlock>

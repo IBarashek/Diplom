@@ -26,22 +26,22 @@
         </Grid.ColumnDefinitions>
         <Frame x:Name="NavigatedFrame" Grid.Column="1"/>
         <StackPanel Grid.RowSpan="2" Background="WhiteSmoke" VerticalAlignment="Stretch"  HorizontalAlignment="Stretch">
-            <Button x:Name="BtnProfile" >
+            <Button x:Name="BtnProfile"  Click="Profile_Click">
                 Профиль
             </Button>
-            <Button x:Name="BtnFavorites" >
+            <Button x:Name="BtnFavorites" Click="Favorites_Click" >
                 Любимые места
             </Button>
-            <Button x:Name="BtnSearch" >
+            <Button x:Name="BtnSearch" Click="Search_Click" >
                 Поиск
             </Button>
-            <Button x:Name="BtnSightseeing" >
+            <Button x:Name="BtnSightseeing" Click="Sightseeing_Click"  >
                 Эккскурсии
             </Button>
-            <Button x:Name="BtnCalendar" >
+            <Button x:Name="BtnCalendar" Click="Calendar_Click" >
                 Календарь
             </Button>
-            <Button x:Name="BtnSettings" >
+            <Button x:Name="BtnSettings" Click="Settings_Click" >
                 Настройки
             </Button>
         </StackPanel>

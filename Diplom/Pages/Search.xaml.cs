@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Diplom.Classes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,28 @@ namespace Diplom.Pages
         public Search()
         {
             InitializeComponent();
+            LstSight.ItemsSource = ConnectionClass.entities.KazanSight.ToList();
+        }
+
+        private void Search_Click(object sender, RoutedEventArgs e)
+        {
+            string search = TxbSearch.Text;
+            if (search != null)
+            {
+                LstSight.ItemsSource = ConnectionClass.entities.KazanSight.Where(x => x.Name.Contains(search) || x.Description.Contains(search)).ToList();
+            }
+            else
+            {
+                LstSight.ItemsSource = ConnectionClass.entities.KazanSight.ToList();
+            }
+        }
+
+        private void textChanged(object sender, TextChangedEventArgs e)
+        {
+            if (TxbSearch.Text == "")
+            {
+                LstSight.ItemsSource = ConnectionClass.entities.KazanSight.ToList();
+            }
         }
     }
 }
