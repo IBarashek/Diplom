@@ -5,11 +5,11 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Diplom.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="800" d:DesignWidth="1700"
+      d:DesignHeight="800" d:DesignWidth="1500"
       Title="Navigation">
     <Page.Resources>
         <Style TargetType="Button">
-            <Setter Property="Width" Value="200"/>
+            <Setter Property="Width" Value="180"/>
             <Setter Property="Height" Value="60"/>
             <Setter Property="Margin" Value="15"/>
             <Setter Property="FontSize" Value="15"/>
@@ -36,10 +36,7 @@
                 Поиск
             </Button>
             <Button x:Name="BtnSightseeing" Click="Sightseeing_Click"  >
-                Эккскурсии
-            </Button>
-            <Button x:Name="BtnCalendar" Click="Calendar_Click" >
-                Календарь
+                Экскурсии
             </Button>
             <Button x:Name="BtnSettings" Click="Settings_Click" >
                 Настройки

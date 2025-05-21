@@ -8,7 +8,7 @@ namespace Diplom.Classes
 {
     class ConnectionClass
     {
-        public static KazanSightEntities entities = new KazanSightEntities();
+        public static KazanSightEntities2 entities = new KazanSightEntities2();
         public static User currentUser;
     }
 }

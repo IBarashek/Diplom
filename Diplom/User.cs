@@ -18,6 +18,7 @@ namespace Diplom
         public User()
         {
             this.FavoritesKazanSight = new HashSet<FavoritesKazanSight>();
+            this.Reservation = new HashSet<Reservation>();
         }
     
         public int Id_User { get; set; }
@@ -30,5 +31,7 @@ namespace Diplom
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<FavoritesKazanSight> FavoritesKazanSight { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Reservation> Reservation { get; set; }
     }
 }

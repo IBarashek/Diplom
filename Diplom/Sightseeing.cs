@@ -12,23 +12,26 @@ namespace Diplom
     using System;
     using System.Collections.Generic;
     
-    public partial class KazanSight
+    public partial class Sightseeing
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public KazanSight()
+        public Sightseeing()
         {
-            this.FavoritesKazanSight = new HashSet<FavoritesKazanSight>();
-            this.Sightseeing = new HashSet<Sightseeing>();
+            this.Reservation = new HashSet<Reservation>();
         }
     
+        public int Id_Sightseeing { get; set; }
+        public int Id_Employee { get; set; }
+        public System.DateTime DateSightseeing { get; set; }
         public int Id_Sight { get; set; }
-        public string Name { get; set; }
         public string Description { get; set; }
-        public string Image { get; set; }
+        public int Cost { get; set; }
+        public int Limit { get; set; }
+        public string Name { get; set; }
     
+        public virtual Employee Employee { get; set; }
+        public virtual KazanSight KazanSight { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<FavoritesKazanSight> FavoritesKazanSight { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Sightseeing> Sightseeing { get; set; }
+        public virtual ICollection<Reservation> Reservation { get; set; }
     }
 }

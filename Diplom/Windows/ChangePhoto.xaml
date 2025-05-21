@@ -5,13 +5,18 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Diplom.Windows"
         mc:Ignorable="d"
-        Title="ChangePhoto" Height="450" Width="800">
+        Title="ChangePhoto" Height="600" Width="800">
     <Grid>
-        <StackPanel Orientation="Horizontal">
-            <TextBlock Text="Выберите файл с компьютера:"/>
-            <Button x:Name="BtnChoseFile" Content="Выбрать файл" Click="ChooseFile_Click"/>
+        <StackPanel>
+            <Image x:Name="ImgPhoto" Margin="50" Height =" 300" Width="300"/>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock x:Name="TxtNameFile" Text="Выберите файл с компьютера:"/>
+                <Button x:Name="BtnChoseFile" Content="Выбрать файл" Click="ChooseFile_Click"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Button x:Name="BtnSave" Content="Сохранить" Click="Save_Click"/>
+                <Button x:Name="BtnClose" Content="Закрыть" Click="Close_Click"/>
+            </StackPanel>
         </StackPanel>
-        <Button x:Name="BtnSave" Content="Сохранить" Click="Save_Click"/>
-        <Button x:Name="BtnClose" Content="Закрыть" Click="Close_Click"/>
     </Grid>
 </Window>

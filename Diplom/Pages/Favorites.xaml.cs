@@ -36,15 +36,9 @@ namespace Diplom.Pages
 
         private void ShowInfo_Click(object sender, MouseButtonEventArgs e)
         {
-            string search = TxbSearch.Text;
-            if (search != null)
-            {
-                LstFavorites.ItemsSource = ConnectionClass.entities.KazanSight.Where(x => x.Name.Contains(search) || x.Description.Contains(search)).ToList();
-            }
-            else
-            {
-                LstFavorites.ItemsSource = ConnectionClass.entities.KazanSight.ToList();
-            }
+            KazanSight sight = LstFavorites.SelectedItem as KazanSight;
+            SightInfo info = new SightInfo(sight);
+            info.Show();
         }
 
         private void TxbSearch_TextChanged(object sender, TextChangedEventArgs e)
@@ -57,10 +51,16 @@ namespace Diplom.Pages
 
         private void Search_CLick(object sender, RoutedEventArgs e)
         {
+            string search = TxbSearch.Text;
+            if (search != null)
+            {
+                LstFavorites.ItemsSource = ConnectionClass.entities.KazanSight.Where(x => x.Name.Contains(search) || x.Description.Contains(search)).ToList();
+            }
+            else
+            {
+                LstFavorites.ItemsSource = ConnectionClass.entities.KazanSight.ToList();
+            }
 
-            KazanSight sight = LstFavorites.SelectedItem as KazanSight;
-            SightInfo info = new SightInfo(sight);
-            info.Show();
         }
     }
 }

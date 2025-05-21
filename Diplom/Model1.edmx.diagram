@@ -4,13 +4,21 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="0bd33f031eb94921b8caf30451cfe017" Name="Diagram1">
-        <EntityTypeShape EntityType="KazanSightModel.FavoritesKazanSight" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="KazanSightModel.KazanSight" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="KazanSightModel.sysdiagrams" Width="1.5" PointX="2.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="KazanSightModel.User" Width="1.5" PointX="0.75" PointY="5.375" IsExpanded="true" />
+      <Diagram DiagramId="0fc666c2dfc0466d8a91248338e94939" Name="Diagram1">
+        <EntityTypeShape EntityType="KazanSightModel.Administrator" Width="1.5" PointX="0.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="KazanSightModel.Employee" Width="1.5" PointX="3.75" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="KazanSightModel.FavoritesKazanSight" Width="1.5" PointX="3" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="KazanSightModel.KazanSight" Width="1.5" PointX="0.75" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="KazanSightModel.Reservation" Width="1.5" PointX="8.25" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="KazanSightModel.Sightseeing" Width="1.5" PointX="6" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="KazanSightModel.sysdiagrams" Width="1.5" PointX="2.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="KazanSightModel.User" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="KazanSightModel.FK_Sightseeing_Employee" ManuallyRouted="false" />
         <AssociationConnector Association="KazanSightModel.FK_FavoritesKazanSight_KazanSight" ManuallyRouted="false" />
         <AssociationConnector Association="KazanSightModel.FK_FavoritesKazanSight_User" ManuallyRouted="false" />
+        <AssociationConnector Association="KazanSightModel.FK_Sightseeing_KazanSight" ManuallyRouted="false" />
+        <AssociationConnector Association="KazanSightModel.FK_Reservation_Sightseeing" ManuallyRouted="false" />
+        <AssociationConnector Association="KazanSightModel.FK_Reservation_User" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

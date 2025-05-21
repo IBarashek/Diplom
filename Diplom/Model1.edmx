@@ -5,6 +5,22 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
       <Schema Namespace="Хранилище KazanSightModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Administrator">
+          <Key>
+            <PropertyRef Name="Id_Administrator" />
+          </Key>
+          <Property Name="Id_Administrator" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Login" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="Id_Employee" />
+          </Key>
+          <Property Name="Id_Employee" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
         <EntityType Name="FavoritesKazanSight">
           <Key>
             <PropertyRef Name="Id_Favorites" />
@@ -22,6 +38,28 @@
           <Property Name="Name" Type="nvarchar" MaxLength="200" Nullable="false" />
           <Property Name="Description" Type="nvarchar" MaxLength="300" />
           <Property Name="Image" Type="nvarchar" MaxLength="300" />
+        </EntityType>
+        <EntityType Name="Reservation">
+          <Key>
+            <PropertyRef Name="Id_Reservation" />
+          </Key>
+          <Property Name="Id_Reservation" Type="int" Nullable="false" />
+          <Property Name="Id_User" Type="int" Nullable="false" />
+          <Property Name="Id_SightSeeing" Type="int" Nullable="false" />
+          <Property Name="IsCanceled" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Sightseeing">
+          <Key>
+            <PropertyRef Name="Id_Sightseeing" />
+          </Key>
+          <Property Name="Id_Sightseeing" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id_Employee" Type="int" Nullable="false" />
+          <Property Name="DateSightseeing" Type="date" Nullable="false" />
+          <Property Name="Id_Sight" Type="int" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="Cost" Type="int" Nullable="false" />
+          <Property Name="Limit" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -69,9 +107,61 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Reservation_Sightseeing">
+          <End Role="Sightseeing" Type="Self.Sightseeing" Multiplicity="1" />
+          <End Role="Reservation" Type="Self.Reservation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sightseeing">
+              <PropertyRef Name="Id_Sightseeing" />
+            </Principal>
+            <Dependent Role="Reservation">
+              <PropertyRef Name="Id_SightSeeing" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reservation_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Reservation" Type="Self.Reservation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id_User" />
+            </Principal>
+            <Dependent Role="Reservation">
+              <PropertyRef Name="Id_User" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sightseeing_Employee">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="Sightseeing" Type="Self.Sightseeing" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Id_Employee" />
+            </Principal>
+            <Dependent Role="Sightseeing">
+              <PropertyRef Name="Id_Employee" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sightseeing_KazanSight">
+          <End Role="KazanSight" Type="Self.KazanSight" Multiplicity="1" />
+          <End Role="Sightseeing" Type="Self.Sightseeing" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KazanSight">
+              <PropertyRef Name="Id_Sight" />
+            </Principal>
+            <Dependent Role="Sightseeing">
+              <PropertyRef Name="Id_Sight" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="Хранилище KazanSightModelContainer">
+          <EntitySet Name="Administrator" EntityType="Self.Administrator" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FavoritesKazanSight" EntityType="Self.FavoritesKazanSight" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="KazanSight" EntityType="Self.KazanSight" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Reservation" EntityType="Self.Reservation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sightseeing" EntityType="Self.Sightseeing" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_FavoritesKazanSight_KazanSight" Association="Self.FK_FavoritesKazanSight_KazanSight">
@@ -82,12 +172,45 @@
             <End Role="User" EntitySet="User" />
             <End Role="FavoritesKazanSight" EntitySet="FavoritesKazanSight" />
           </AssociationSet>
+          <AssociationSet Name="FK_Reservation_Sightseeing" Association="Self.FK_Reservation_Sightseeing">
+            <End Role="Sightseeing" EntitySet="Sightseeing" />
+            <End Role="Reservation" EntitySet="Reservation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reservation_User" Association="Self.FK_Reservation_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Reservation" EntitySet="Reservation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sightseeing_Employee" Association="Self.FK_Sightseeing_Employee">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="Sightseeing" EntitySet="Sightseeing" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sightseeing_KazanSight" Association="Self.FK_Sightseeing_KazanSight">
+            <End Role="KazanSight" EntitySet="KazanSight" />
+            <End Role="Sightseeing" EntitySet="Sightseeing" />
+          </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="KazanSightModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Administrator">
+          <Key>
+            <PropertyRef Name="Id_Administrator" />
+          </Key>
+          <Property Name="Id_Administrator" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="Id_Employee" />
+          </Key>
+          <Property Name="Id_Employee" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Sightseeing" Relationship="Self.FK_Sightseeing_Employee" FromRole="Employee" ToRole="Sightseeing" />
+        </EntityType>
         <EntityType Name="FavoritesKazanSight">
           <Key>
             <PropertyRef Name="Id_Favorites" />
@@ -108,6 +231,34 @@
           <Property Name="Description" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
           <Property Name="Image" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="FavoritesKazanSight" Relationship="Self.FK_FavoritesKazanSight_KazanSight" FromRole="KazanSight" ToRole="FavoritesKazanSight" />
+          <NavigationProperty Name="Sightseeing" Relationship="Self.FK_Sightseeing_KazanSight" FromRole="KazanSight" ToRole="Sightseeing" />
+        </EntityType>
+        <EntityType Name="Reservation">
+          <Key>
+            <PropertyRef Name="Id_Reservation" />
+          </Key>
+          <Property Name="Id_Reservation" Type="Int32" Nullable="false" />
+          <Property Name="Id_User" Type="Int32" Nullable="false" />
+          <Property Name="Id_SightSeeing" Type="Int32" Nullable="false" />
+          <Property Name="IsCanceled" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Sightseeing" Relationship="Self.FK_Reservation_Sightseeing" FromRole="Reservation" ToRole="Sightseeing" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Reservation_User" FromRole="Reservation" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Sightseeing">
+          <Key>
+            <PropertyRef Name="Id_Sightseeing" />
+          </Key>
+          <Property Name="Id_Sightseeing" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id_Employee" Type="Int32" Nullable="false" />
+          <Property Name="DateSightseeing" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Id_Sight" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Cost" Type="Int32" Nullable="false" />
+          <Property Name="Limit" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK_Sightseeing_Employee" FromRole="Sightseeing" ToRole="Employee" />
+          <NavigationProperty Name="KazanSight" Relationship="Self.FK_Sightseeing_KazanSight" FromRole="Sightseeing" ToRole="KazanSight" />
+          <NavigationProperty Name="Reservation" Relationship="Self.FK_Reservation_Sightseeing" FromRole="Sightseeing" ToRole="Reservation" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -131,7 +282,20 @@
           <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Image" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="FavoritesKazanSight" Relationship="Self.FK_FavoritesKazanSight_User" FromRole="User" ToRole="FavoritesKazanSight" />
+          <NavigationProperty Name="Reservation" Relationship="Self.FK_Reservation_User" FromRole="User" ToRole="Reservation" />
         </EntityType>
+        <Association Name="FK_Sightseeing_Employee">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="Sightseeing" Type="Self.Sightseeing" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Id_Employee" />
+            </Principal>
+            <Dependent Role="Sightseeing">
+              <PropertyRef Name="Id_Employee" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_FavoritesKazanSight_KazanSight">
           <End Role="KazanSight" Type="Self.KazanSight" Multiplicity="1" />
           <End Role="FavoritesKazanSight" Type="Self.FavoritesKazanSight" Multiplicity="*" />
@@ -156,11 +320,55 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="KazanSightEntities" annotation:LazyLoadingEnabled="true">
+        <Association Name="FK_Sightseeing_KazanSight">
+          <End Role="KazanSight" Type="Self.KazanSight" Multiplicity="1" />
+          <End Role="Sightseeing" Type="Self.Sightseeing" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KazanSight">
+              <PropertyRef Name="Id_Sight" />
+            </Principal>
+            <Dependent Role="Sightseeing">
+              <PropertyRef Name="Id_Sight" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reservation_Sightseeing">
+          <End Role="Sightseeing" Type="Self.Sightseeing" Multiplicity="1" />
+          <End Role="Reservation" Type="Self.Reservation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sightseeing">
+              <PropertyRef Name="Id_Sightseeing" />
+            </Principal>
+            <Dependent Role="Reservation">
+              <PropertyRef Name="Id_SightSeeing" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reservation_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Reservation" Type="Self.Reservation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id_User" />
+            </Principal>
+            <Dependent Role="Reservation">
+              <PropertyRef Name="Id_User" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="KazanSightEntities2" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Administrator" EntityType="Self.Administrator" />
+          <EntitySet Name="Employee" EntityType="Self.Employee" />
           <EntitySet Name="FavoritesKazanSight" EntityType="Self.FavoritesKazanSight" />
           <EntitySet Name="KazanSight" EntityType="Self.KazanSight" />
+          <EntitySet Name="Reservation" EntityType="Self.Reservation" />
+          <EntitySet Name="Sightseeing" EntityType="Self.Sightseeing" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <EntitySet Name="User" EntityType="Self.User" />
+          <AssociationSet Name="FK_Sightseeing_Employee" Association="Self.FK_Sightseeing_Employee">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="Sightseeing" EntitySet="Sightseeing" />
+          </AssociationSet>
           <AssociationSet Name="FK_FavoritesKazanSight_KazanSight" Association="Self.FK_FavoritesKazanSight_KazanSight">
             <End Role="KazanSight" EntitySet="KazanSight" />
             <End Role="FavoritesKazanSight" EntitySet="FavoritesKazanSight" />
@@ -169,13 +377,43 @@
             <End Role="User" EntitySet="User" />
             <End Role="FavoritesKazanSight" EntitySet="FavoritesKazanSight" />
           </AssociationSet>
+          <AssociationSet Name="FK_Sightseeing_KazanSight" Association="Self.FK_Sightseeing_KazanSight">
+            <End Role="KazanSight" EntitySet="KazanSight" />
+            <End Role="Sightseeing" EntitySet="Sightseeing" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reservation_Sightseeing" Association="Self.FK_Reservation_Sightseeing">
+            <End Role="Sightseeing" EntitySet="Sightseeing" />
+            <End Role="Reservation" EntitySet="Reservation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reservation_User" Association="Self.FK_Reservation_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Reservation" EntitySet="Reservation" />
+          </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Хранилище KazanSightModelContainer" CdmEntityContainer="KazanSightEntities">
+        <EntityContainerMapping StorageEntityContainer="Хранилище KazanSightModelContainer" CdmEntityContainer="KazanSightEntities2">
+          <EntitySetMapping Name="Administrator">
+            <EntityTypeMapping TypeName="KazanSightModel.Administrator">
+              <MappingFragment StoreEntitySet="Administrator">
+                <ScalarProperty Name="Id_Administrator" ColumnName="Id_Administrator" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employee">
+            <EntityTypeMapping TypeName="KazanSightModel.Employee">
+              <MappingFragment StoreEntitySet="Employee">
+                <ScalarProperty Name="Id_Employee" ColumnName="Id_Employee" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="FavoritesKazanSight">
             <EntityTypeMapping TypeName="KazanSightModel.FavoritesKazanSight">
               <MappingFragment StoreEntitySet="FavoritesKazanSight">
@@ -193,6 +431,30 @@
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Image" ColumnName="Image" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Reservation">
+            <EntityTypeMapping TypeName="KazanSightModel.Reservation">
+              <MappingFragment StoreEntitySet="Reservation">
+                <ScalarProperty Name="Id_Reservation" ColumnName="Id_Reservation" />
+                <ScalarProperty Name="Id_User" ColumnName="Id_User" />
+                <ScalarProperty Name="Id_SightSeeing" ColumnName="Id_SightSeeing" />
+                <ScalarProperty Name="IsCanceled" ColumnName="IsCanceled" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sightseeing">
+            <EntityTypeMapping TypeName="KazanSightModel.Sightseeing">
+              <MappingFragment StoreEntitySet="Sightseeing">
+                <ScalarProperty Name="Id_Sightseeing" ColumnName="Id_Sightseeing" />
+                <ScalarProperty Name="Id_Employee" ColumnName="Id_Employee" />
+                <ScalarProperty Name="DateSightseeing" ColumnName="DateSightseeing" />
+                <ScalarProperty Name="Id_Sight" ColumnName="Id_Sight" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Cost" ColumnName="Cost" />
+                <ScalarProperty Name="Limit" ColumnName="Limit" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
