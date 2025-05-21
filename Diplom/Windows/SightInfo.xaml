@@ -7,6 +7,22 @@
         mc:Ignorable="d"
         Title="SightInfo" Height="450" Width="800">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="2*"/>
+        </Grid.RowDefinitions>
+        <Image x:Name="ImgSight"/>
+        <ScrollViewer  Grid.Row="1">
+            <StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock x:Name="TxtName"/>
+                    <Button x:Name="BtnFavorites" Click="Favorites_Click"/>
+                </StackPanel>
+                <TextBlock x:Name="TxtShortDescription"/>
+                <TextBlock x:Name="TxtDescription"/>
+            </StackPanel>
+        </ScrollViewer>
+
+
     </Grid>
 </Window>

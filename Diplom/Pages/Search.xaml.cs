@@ -1,4 +1,5 @@
 ﻿using Diplom.Classes;
+using Diplom.Windows;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -46,6 +47,13 @@ namespace Diplom.Pages
             {
                 LstSight.ItemsSource = ConnectionClass.entities.KazanSight.ToList();
             }
+        }
+
+        private void Info_Click(object sender, MouseButtonEventArgs e)
+        {
+            KazanSight sight = LstSight.SelectedItem as KazanSight;
+            SightInfo info = new SightInfo(sight);
+            info.Show();
         }
     }
 }

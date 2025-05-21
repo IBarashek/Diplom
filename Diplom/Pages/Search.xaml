@@ -16,11 +16,12 @@
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
             <TextBox x:Name ="TxbSearch" Width="1000" Height="50" Margin="30" TextChanged="textChanged"/>
             <Button x:Name="BtnSearch" Content="Поиск" Width="100" Click="Search_Click"/>
+            
         </StackPanel>
-        <ListView Grid.Row="1" x:Name="LstSight" ItemsSource="{Binding KazanSight}">
+        <ListView Grid.Row="1" x:Name="LstSight" ItemsSource="{Binding KazanSight}" MouseDoubleClick="Info_Click">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <StackPanel Orientation="Horizontal" >
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
                         <Image Source="{Binding Image}"/>
                         <StackPanel>
                             <TextBlock Text="{Binding Name}"/>
