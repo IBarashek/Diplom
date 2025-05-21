@@ -55,5 +55,6 @@ namespace Diplom.Pages
             SightInfo info = new SightInfo(sight);
             info.Show();
         }
+
     }
 }
