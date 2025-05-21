@@ -1,0 +1,26 @@
+﻿<Window x:Class="Diplom.Windows.ChangeData"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Diplom.Windows"
+        mc:Ignorable="d"
+        Title="ChangeData" Height="450" Width="800">
+    <Grid>
+        <StackPanel>
+            <StackPanel Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <TextBlock Text="Ваше имя:"/>
+                <TextBox x:Name="TxbName"/>
+                <TextBlock  Text="Ваша фамилия:"/>
+                <TextBox x:Name="TxbPatronymic"/>
+                <TextBlock Text="Ваше отчество"/>
+                <TextBox x:Name="TxbLastName"/>
+                <StackPanel>
+                    <Button x:Name="SaveButton" Content="Изменить" Click="Save_Click"/>
+                    <Button x:Name="CloseButton" Content="Выйти" Click="Close_Click"/>
+                </StackPanel>
+                
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>

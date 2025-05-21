@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Diplom.Classes;
 using Diplom.Pages;
+using Diplom.Windows;
 using static System.Net.Mime.MediaTypeNames;
 
 namespace Diplom.Pages
@@ -40,6 +41,18 @@ namespace Diplom.Pages
             TxtName.Text = user.Name;
             TxtLastName.Text = user.LastName;
             TxtPatronymic.Text = user.Patronymic;
+        }
+
+        private void ChangePhoto_Click(object sender, RoutedEventArgs e)
+        {
+            ChangePhoto window = new ChangePhoto();
+            window.Show();
+        }
+
+        private void ChangeData_Click(object sender, RoutedEventArgs e)
+        {
+            ChangeData window = new ChangeData();
+            window.Show();
         }
     }
 }
