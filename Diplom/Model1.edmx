@@ -9,7 +9,7 @@
           <Key>
             <PropertyRef Name="Id_Administrator" />
           </Key>
-          <Property Name="Id_Administrator" Type="int" Nullable="false" />
+          <Property Name="Id_Administrator" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Login" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
@@ -38,12 +38,14 @@
           <Property Name="Name" Type="nvarchar" MaxLength="200" Nullable="false" />
           <Property Name="Description" Type="nvarchar" MaxLength="300" />
           <Property Name="Image" Type="nvarchar" MaxLength="300" />
+          <Property Name="Id_Administrator" Type="int" Nullable="false" />
+          <Property Name="IsDelete" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Reservation">
           <Key>
             <PropertyRef Name="Id_Reservation" />
           </Key>
-          <Property Name="Id_Reservation" Type="int" Nullable="false" />
+          <Property Name="Id_Reservation" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Id_User" Type="int" Nullable="false" />
           <Property Name="Id_SightSeeing" Type="int" Nullable="false" />
           <Property Name="IsCanceled" Type="bit" Nullable="false" />
@@ -60,6 +62,9 @@
           <Property Name="Cost" Type="int" Nullable="false" />
           <Property Name="Limit" Type="int" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Id_Type" Type="int" Nullable="false" />
+          <Property Name="Id_Administrator" Type="int" Nullable="false" />
+          <Property Name="IsDelete" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -70,6 +75,14 @@
           <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="TypeSightseeing">
+          <Key>
+            <PropertyRef Name="Id_Type" />
+          </Key>
+          <Property Name="Id_Type" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="300" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -107,6 +120,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_KazanSight_Administrator">
+          <End Role="Administrator" Type="Self.Administrator" Multiplicity="1" />
+          <End Role="KazanSight" Type="Self.KazanSight" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Administrator">
+              <PropertyRef Name="Id_Administrator" />
+            </Principal>
+            <Dependent Role="KazanSight">
+              <PropertyRef Name="Id_Administrator" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Reservation_Sightseeing">
           <End Role="Sightseeing" Type="Self.Sightseeing" Multiplicity="1" />
           <End Role="Reservation" Type="Self.Reservation" Multiplicity="*" />
@@ -128,6 +153,18 @@
             </Principal>
             <Dependent Role="Reservation">
               <PropertyRef Name="Id_User" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sightseeing_Administrator">
+          <End Role="Administrator" Type="Self.Administrator" Multiplicity="1" />
+          <End Role="Sightseeing" Type="Self.Sightseeing" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Administrator">
+              <PropertyRef Name="Id_Administrator" />
+            </Principal>
+            <Dependent Role="Sightseeing">
+              <PropertyRef Name="Id_Administrator" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -155,6 +192,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Sightseeing_TypeSightseeing">
+          <End Role="TypeSightseeing" Type="Self.TypeSightseeing" Multiplicity="1" />
+          <End Role="Sightseeing" Type="Self.Sightseeing" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypeSightseeing">
+              <PropertyRef Name="Id_Type" />
+            </Principal>
+            <Dependent Role="Sightseeing">
+              <PropertyRef Name="Id_Type" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="Хранилище KazanSightModelContainer">
           <EntitySet Name="Administrator" EntityType="Self.Administrator" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
@@ -163,6 +212,7 @@
           <EntitySet Name="Reservation" EntityType="Self.Reservation" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Sightseeing" EntityType="Self.Sightseeing" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TypeSightseeing" EntityType="Self.TypeSightseeing" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_FavoritesKazanSight_KazanSight" Association="Self.FK_FavoritesKazanSight_KazanSight">
             <End Role="KazanSight" EntitySet="KazanSight" />
@@ -172,6 +222,10 @@
             <End Role="User" EntitySet="User" />
             <End Role="FavoritesKazanSight" EntitySet="FavoritesKazanSight" />
           </AssociationSet>
+          <AssociationSet Name="FK_KazanSight_Administrator" Association="Self.FK_KazanSight_Administrator">
+            <End Role="Administrator" EntitySet="Administrator" />
+            <End Role="KazanSight" EntitySet="KazanSight" />
+          </AssociationSet>
           <AssociationSet Name="FK_Reservation_Sightseeing" Association="Self.FK_Reservation_Sightseeing">
             <End Role="Sightseeing" EntitySet="Sightseeing" />
             <End Role="Reservation" EntitySet="Reservation" />
@@ -180,12 +234,20 @@
             <End Role="User" EntitySet="User" />
             <End Role="Reservation" EntitySet="Reservation" />
           </AssociationSet>
+          <AssociationSet Name="FK_Sightseeing_Administrator" Association="Self.FK_Sightseeing_Administrator">
+            <End Role="Administrator" EntitySet="Administrator" />
+            <End Role="Sightseeing" EntitySet="Sightseeing" />
+          </AssociationSet>
           <AssociationSet Name="FK_Sightseeing_Employee" Association="Self.FK_Sightseeing_Employee">
             <End Role="Employee" EntitySet="Employee" />
             <End Role="Sightseeing" EntitySet="Sightseeing" />
           </AssociationSet>
           <AssociationSet Name="FK_Sightseeing_KazanSight" Association="Self.FK_Sightseeing_KazanSight">
             <End Role="KazanSight" EntitySet="KazanSight" />
+            <End Role="Sightseeing" EntitySet="Sightseeing" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sightseeing_TypeSightseeing" Association="Self.FK_Sightseeing_TypeSightseeing">
+            <End Role="TypeSightseeing" EntitySet="TypeSightseeing" />
             <End Role="Sightseeing" EntitySet="Sightseeing" />
           </AssociationSet>
         </EntityContainer>
@@ -198,10 +260,12 @@
           <Key>
             <PropertyRef Name="Id_Administrator" />
           </Key>
-          <Property Name="Id_Administrator" Type="Int32" Nullable="false" />
+          <Property Name="Id_Administrator" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="KazanSight" Relationship="Self.FK_KazanSight_Administrator" FromRole="Administrator" ToRole="KazanSight" />
+          <NavigationProperty Name="Sightseeing" Relationship="Self.FK_Sightseeing_Administrator" FromRole="Administrator" ToRole="Sightseeing" />
         </EntityType>
         <EntityType Name="Employee">
           <Key>
@@ -230,6 +294,9 @@
           <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Description" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
           <Property Name="Image" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="Id_Administrator" Type="Int32" Nullable="false" />
+          <Property Name="IsDelete" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Administrator" Relationship="Self.FK_KazanSight_Administrator" FromRole="KazanSight" ToRole="Administrator" />
           <NavigationProperty Name="FavoritesKazanSight" Relationship="Self.FK_FavoritesKazanSight_KazanSight" FromRole="KazanSight" ToRole="FavoritesKazanSight" />
           <NavigationProperty Name="Sightseeing" Relationship="Self.FK_Sightseeing_KazanSight" FromRole="KazanSight" ToRole="Sightseeing" />
         </EntityType>
@@ -237,7 +304,7 @@
           <Key>
             <PropertyRef Name="Id_Reservation" />
           </Key>
-          <Property Name="Id_Reservation" Type="Int32" Nullable="false" />
+          <Property Name="Id_Reservation" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Id_User" Type="Int32" Nullable="false" />
           <Property Name="Id_SightSeeing" Type="Int32" Nullable="false" />
           <Property Name="IsCanceled" Type="Boolean" Nullable="false" />
@@ -256,9 +323,14 @@
           <Property Name="Cost" Type="Int32" Nullable="false" />
           <Property Name="Limit" Type="Int32" Nullable="false" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Id_Type" Type="Int32" Nullable="false" />
+          <Property Name="Id_Administrator" Type="Int32" Nullable="false" />
+          <Property Name="IsDelete" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Administrator" Relationship="Self.FK_Sightseeing_Administrator" FromRole="Sightseeing" ToRole="Administrator" />
           <NavigationProperty Name="Employee" Relationship="Self.FK_Sightseeing_Employee" FromRole="Sightseeing" ToRole="Employee" />
           <NavigationProperty Name="KazanSight" Relationship="Self.FK_Sightseeing_KazanSight" FromRole="Sightseeing" ToRole="KazanSight" />
           <NavigationProperty Name="Reservation" Relationship="Self.FK_Reservation_Sightseeing" FromRole="Sightseeing" ToRole="Reservation" />
+          <NavigationProperty Name="TypeSightseeing" Relationship="Self.FK_Sightseeing_TypeSightseeing" FromRole="Sightseeing" ToRole="TypeSightseeing" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -269,6 +341,15 @@
           <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="version" Type="Int32" />
           <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="TypeSightseeing">
+          <Key>
+            <PropertyRef Name="Id_Type" />
+          </Key>
+          <Property Name="Id_Type" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Sightseeing" Relationship="Self.FK_Sightseeing_TypeSightseeing" FromRole="TypeSightseeing" ToRole="Sightseeing" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -284,6 +365,30 @@
           <NavigationProperty Name="FavoritesKazanSight" Relationship="Self.FK_FavoritesKazanSight_User" FromRole="User" ToRole="FavoritesKazanSight" />
           <NavigationProperty Name="Reservation" Relationship="Self.FK_Reservation_User" FromRole="User" ToRole="Reservation" />
         </EntityType>
+        <Association Name="FK_KazanSight_Administrator">
+          <End Role="Administrator" Type="Self.Administrator" Multiplicity="1" />
+          <End Role="KazanSight" Type="Self.KazanSight" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Administrator">
+              <PropertyRef Name="Id_Administrator" />
+            </Principal>
+            <Dependent Role="KazanSight">
+              <PropertyRef Name="Id_Administrator" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sightseeing_Administrator">
+          <End Role="Administrator" Type="Self.Administrator" Multiplicity="1" />
+          <End Role="Sightseeing" Type="Self.Sightseeing" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Administrator">
+              <PropertyRef Name="Id_Administrator" />
+            </Principal>
+            <Dependent Role="Sightseeing">
+              <PropertyRef Name="Id_Administrator" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Sightseeing_Employee">
           <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
           <End Role="Sightseeing" Type="Self.Sightseeing" Multiplicity="*" />
@@ -356,6 +461,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Sightseeing_TypeSightseeing">
+          <End Role="TypeSightseeing" Type="Self.TypeSightseeing" Multiplicity="1" />
+          <End Role="Sightseeing" Type="Self.Sightseeing" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypeSightseeing">
+              <PropertyRef Name="Id_Type" />
+            </Principal>
+            <Dependent Role="Sightseeing">
+              <PropertyRef Name="Id_Type" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="KazanSightEntities2" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Administrator" EntityType="Self.Administrator" />
           <EntitySet Name="Employee" EntityType="Self.Employee" />
@@ -364,7 +481,16 @@
           <EntitySet Name="Reservation" EntityType="Self.Reservation" />
           <EntitySet Name="Sightseeing" EntityType="Self.Sightseeing" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="TypeSightseeing" EntityType="Self.TypeSightseeing" />
           <EntitySet Name="User" EntityType="Self.User" />
+          <AssociationSet Name="FK_KazanSight_Administrator" Association="Self.FK_KazanSight_Administrator">
+            <End Role="Administrator" EntitySet="Administrator" />
+            <End Role="KazanSight" EntitySet="KazanSight" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sightseeing_Administrator" Association="Self.FK_Sightseeing_Administrator">
+            <End Role="Administrator" EntitySet="Administrator" />
+            <End Role="Sightseeing" EntitySet="Sightseeing" />
+          </AssociationSet>
           <AssociationSet Name="FK_Sightseeing_Employee" Association="Self.FK_Sightseeing_Employee">
             <End Role="Employee" EntitySet="Employee" />
             <End Role="Sightseeing" EntitySet="Sightseeing" />
@@ -388,6 +514,10 @@
           <AssociationSet Name="FK_Reservation_User" Association="Self.FK_Reservation_User">
             <End Role="User" EntitySet="User" />
             <End Role="Reservation" EntitySet="Reservation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sightseeing_TypeSightseeing" Association="Self.FK_Sightseeing_TypeSightseeing">
+            <End Role="TypeSightseeing" EntitySet="TypeSightseeing" />
+            <End Role="Sightseeing" EntitySet="Sightseeing" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -431,6 +561,8 @@
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Id_Administrator" ColumnName="Id_Administrator" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -455,6 +587,9 @@
                 <ScalarProperty Name="Cost" ColumnName="Cost" />
                 <ScalarProperty Name="Limit" ColumnName="Limit" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id_Type" ColumnName="Id_Type" />
+                <ScalarProperty Name="Id_Administrator" ColumnName="Id_Administrator" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -466,6 +601,15 @@
                 <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
                 <ScalarProperty Name="version" ColumnName="version" />
                 <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TypeSightseeing">
+            <EntityTypeMapping TypeName="KazanSightModel.TypeSightseeing">
+              <MappingFragment StoreEntitySet="TypeSightseeing">
+                <ScalarProperty Name="Id_Type" ColumnName="Id_Type" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

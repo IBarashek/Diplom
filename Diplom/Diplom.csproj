@@ -79,6 +79,15 @@
     <Compile Include="Administrator.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="AdminPages\AdminMainMenu.xaml.cs">
+      <DependentUpon>AdminMainMenu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AdminPages\KazanSightPage.xaml.cs">
+      <DependentUpon>KazanSightPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AdminPages\SightseeingAdmin.xaml.cs">
+      <DependentUpon>SightseeingAdmin.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Classes\ConnectionClass.cs" />
     <Compile Include="Employee.cs">
       <DependentUpon>Model1.tt</DependentUpon>
@@ -119,11 +128,20 @@
     <Compile Include="sysdiagrams.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="TypeSightseeing.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="User.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Windows\AddKazanSight.xaml.cs">
+      <DependentUpon>AddKazanSight.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\ChangeData.xaml.cs">
       <DependentUpon>ChangeData.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\ChangeKazanSight.xaml.cs">
+      <DependentUpon>ChangeKazanSight.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\ChangePhoto.xaml.cs">
       <DependentUpon>ChangePhoto.xaml</DependentUpon>
@@ -131,6 +149,18 @@
     <Compile Include="Windows\SightInfo.xaml.cs">
       <DependentUpon>SightInfo.xaml</DependentUpon>
     </Compile>
+    <Page Include="AdminPages\AdminMainMenu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AdminPages\KazanSightPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AdminPages\SightseeingAdmin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -175,7 +205,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Windows\AddKazanSight.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Windows\ChangeData.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\ChangeKazanSight.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -249,6 +287,8 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\tatSloboda.jpeg" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model1.edmx</DependentUpon>

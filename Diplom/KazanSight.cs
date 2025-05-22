@@ -25,7 +25,10 @@ namespace Diplom
         public string Name { get; set; }
         public string Description { get; set; }
         public string Image { get; set; }
+        public int Id_Administrator { get; set; }
+        public bool IsDelete { get; set; }
     
+        public virtual Administrator Administrator { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<FavoritesKazanSight> FavoritesKazanSight { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

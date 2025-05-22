@@ -10,5 +10,6 @@ namespace Diplom.Classes
     {
         public static KazanSightEntities2 entities = new KazanSightEntities2();
         public static User currentUser;
+        public static Administrator administrator;
     }
 }

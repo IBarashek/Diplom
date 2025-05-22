@@ -32,6 +32,7 @@ namespace Diplom
         public virtual DbSet<Reservation> Reservation { get; set; }
         public virtual DbSet<Sightseeing> Sightseeing { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
+        public virtual DbSet<TypeSightseeing> TypeSightseeing { get; set; }
         public virtual DbSet<User> User { get; set; }
     }
 }

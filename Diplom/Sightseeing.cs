@@ -28,10 +28,15 @@ namespace Diplom
         public int Cost { get; set; }
         public int Limit { get; set; }
         public string Name { get; set; }
+        public int Id_Type { get; set; }
+        public int Id_Administrator { get; set; }
+        public bool IsDelete { get; set; }
     
+        public virtual Administrator Administrator { get; set; }
         public virtual Employee Employee { get; set; }
         public virtual KazanSight KazanSight { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Reservation> Reservation { get; set; }
+        public virtual TypeSightseeing TypeSightseeing { get; set; }
     }
 }

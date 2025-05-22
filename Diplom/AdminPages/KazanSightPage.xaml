@@ -1,0 +1,39 @@
+﻿<Page x:Class="Diplom.AdminPages.KazanSightPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Diplom.AdminPages"
+      mc:Ignorable="d" 
+       d:DesignHeight="700" d:DesignWidth="1500"
+      Title="KazanSight">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="7*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="Поиск:"/>
+            <TextBox x:Name="TxbSearch" TextChanged="Searc_TextChanged"/>
+            <Button x:Name="BtnAdd" Content="Добавить достопримечательность" Click="Add_Click"/>
+            <Button x:Name="BtnDelete" Content="Удалить" Click="Delete_Click" />
+            <Button x:Name="BtnChange" Content="Изменить" Click="Change_Click"  />
+        </StackPanel>
+        <ListView Grid.Row ="1" x:Name="LstSight" ItemsSource="{Binding KazanSight}" >
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" >
+                        <Image Source="{Binding Image}" Width="150" Height="150"/>
+                        <StackPanel>
+                            <TextBlock Text="{Binding Name}"/>
+                            <TextBlock Text="{Binding Description}"/>
+                            <!--переделать на краткое описание-->
+                        </StackPanel>
+                        
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+</Page>

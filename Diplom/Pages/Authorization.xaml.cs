@@ -37,11 +37,14 @@ namespace Diplom.Pages
                 if (ConnectionClass.currentUser != null)
                 {
                     MessageBox.Show("Авторизация прошла успешно");
-                    NavigationService.Navigate(new Profile());
                 }
                 else
                 {
+                    ConnectionClass.administrator = ConnectionClass.entities.Administrator.Where(x => x.Login == login && x.Password == password).FirstOrDefault();
+                    if(ConnectionClass.administrator == null)
+                    {
                     MessageBox.Show("Пользователь не найден");
+                    }
                 }
             }
             else

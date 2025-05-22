@@ -24,6 +24,7 @@
             <ColumnDefinition Width="2*"/>
             <ColumnDefinition Width="12*"/>
         </Grid.ColumnDefinitions>
+        <Frame x:Name="AdminFrame" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
         <Frame x:Name="NavigatedFrame" Grid.Column="1"/>
         <StackPanel Grid.RowSpan="2" Background="WhiteSmoke" VerticalAlignment="Stretch"  HorizontalAlignment="Stretch">
             <Button x:Name="BtnProfile"  Click="Profile_Click">

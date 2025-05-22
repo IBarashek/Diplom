@@ -1,0 +1,25 @@
+﻿<Window x:Class="Diplom.Windows.AddKazanSight"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Diplom.Windows"
+        mc:Ignorable="d"
+        Title="AddKazanSight" Height="450" Width="800">
+    <Grid>
+        <StackPanel>
+            <TextBlock Text="Название достопримечательности:"/>
+            <TextBox x:Name="TxbName" />
+            <TextBlock Text="Описание достопримечательности:"/>
+            <TextBox x:Name="TxbDescription" />
+            <Image x:Name ="ImgSight" Width="100" Height="100"/>
+            <StackPanel>
+                <TextBlock Text="Путь к файлу изображения:"/>
+                <TextBlock x:Name="TxtFile" />
+                <Button x:Name="BtnChooseFile" Click="ChooseFile_Click" Content="Выбрать файл"/>
+            </StackPanel>
+            <Button x:Name="BtnAdd" Content="Добавить" Click="Add_click"/>
+            <Button x:Name="BtnGoBack" Content="Выйти" Click="CoBack_click"/>
+        </StackPanel>
+    </Grid>
+</Window>

@@ -12,22 +12,18 @@ namespace Diplom
     using System;
     using System.Collections.Generic;
     
-    public partial class Administrator
+    public partial class TypeSightseeing
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Administrator()
+        public TypeSightseeing()
         {
-            this.KazanSight = new HashSet<KazanSight>();
             this.Sightseeing = new HashSet<Sightseeing>();
         }
     
-        public int Id_Administrator { get; set; }
+        public int Id_Type { get; set; }
         public string Name { get; set; }
-        public string Login { get; set; }
-        public string Password { get; set; }
+        public string Description { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<KazanSight> KazanSight { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Sightseeing> Sightseeing { get; set; }
     }
