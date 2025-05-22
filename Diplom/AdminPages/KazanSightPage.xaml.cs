@@ -42,7 +42,7 @@ namespace Diplom.AdminPages
             }
             else
             {
-                MessageBox.Show("Для архивирования выберите достопримечательность");
+                MessageBox.Show("Для изменения выберите достопримечательность");
             }
         }
 
