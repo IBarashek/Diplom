@@ -1,0 +1,37 @@
+﻿<Window x:Class="Diplom.Windows.AddSightseeing"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Diplom.Windows"
+        mc:Ignorable="d"
+        Title="AddSightseeing" Height="450" Width="800">
+    <Grid>
+        <StackPanel>
+            <TextBlock Text="Введите название экскурсии:"/>
+            <TextBox x:Name="TxbName"/>
+            <TextBlock Text="Выберите место проведения:"/>
+            <ComboBox x:Name="CmbSight"/>
+            <TextBlock Text="Выберите дату:"/>
+            <DatePicker x:Name="DapDate"/>
+            <TextBlock Text="Выберите экскурсовода:"/>
+            <ComboBox x:Name="CmbEmployee"/>
+            <TextBlock Text="Описание к экскурсие:"/>
+            <TextBox x:Name="TxbDescription"/>
+            <TextBlock Text="Стоимость:"/>
+            <TextBox x:Name="TxbCost"/>
+            <TextBlock Text="Максимальное количество людей:"/>
+            <TextBox x:Name="TxbLimit"/>
+            <TextBlock Text="ВЫберите тип экскурсии:"/>
+            <ComboBox x:Name="CmbType" />
+
+            <StackPanel Orientation="Horizontal">
+                <Button x:Name="BtnAdd" Content="Добавить"  Click="Add_Click"/>
+                <Button x:Name="BtnBack" Content="Добавить"  Click="GoBack_Click"/>
+            </StackPanel>
+
+        </StackPanel>
+        
+        
+    </Grid>
+</Window>

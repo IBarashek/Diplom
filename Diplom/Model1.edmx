@@ -473,7 +473,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="KazanSightEntities2" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="KazanSightEntities4" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Administrator" EntityType="Self.Administrator" />
           <EntitySet Name="Employee" EntityType="Self.Employee" />
           <EntitySet Name="FavoritesKazanSight" EntityType="Self.FavoritesKazanSight" />
@@ -525,7 +525,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Хранилище KazanSightModelContainer" CdmEntityContainer="KazanSightEntities2">
+        <EntityContainerMapping StorageEntityContainer="Хранилище KazanSightModelContainer" CdmEntityContainer="KazanSightEntities4">
           <EntitySetMapping Name="Administrator">
             <EntityTypeMapping TypeName="KazanSightModel.Administrator">
               <MappingFragment StoreEntitySet="Administrator">

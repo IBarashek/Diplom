@@ -13,10 +13,10 @@ namespace Diplom
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class KazanSightEntities2 : DbContext
+    public partial class KazanSightEntities4 : DbContext
     {
-        public KazanSightEntities2()
-            : base("name=KazanSightEntities2")
+        public KazanSightEntities4()
+            : base("name=KazanSightEntities4")
         {
         }
     

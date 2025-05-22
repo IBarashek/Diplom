@@ -35,7 +35,7 @@ namespace Diplom.Pages
         {
             if (TxbSearch.Text == "")
             {
-                LstSight.ItemsSource = ConnectionClass.entities.KazanSight.ToList();
+                LstSight.ItemsSource = ConnectionClass.entities.Sightseeing.ToList();
             }
         }
 

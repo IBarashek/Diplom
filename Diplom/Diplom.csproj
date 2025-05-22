@@ -137,6 +137,9 @@
     <Compile Include="Windows\AddKazanSight.xaml.cs">
       <DependentUpon>AddKazanSight.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\AddSightseeing.xaml.cs">
+      <DependentUpon>AddSightseeing.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\ChangeData.xaml.cs">
       <DependentUpon>ChangeData.xaml</DependentUpon>
     </Compile>
@@ -145,6 +148,9 @@
     </Compile>
     <Compile Include="Windows\ChangePhoto.xaml.cs">
       <DependentUpon>ChangePhoto.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\ChangeSightseeing.xaml.cs">
+      <DependentUpon>ChangeSightseeing.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\SightInfo.xaml.cs">
       <DependentUpon>SightInfo.xaml</DependentUpon>
@@ -209,6 +215,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Windows\AddSightseeing.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Windows\ChangeData.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -218,6 +228,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\ChangePhoto.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\ChangeSightseeing.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -1,4 +1,5 @@
 ﻿using Diplom.Classes;
+using Diplom.Windows;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,7 +25,8 @@ namespace Diplom.AdminPages
         public SightseeingAdmin()
         {
             InitializeComponent();
-            LstSight.ItemsSource = ConnectionClass.entities.KazanSight.ToList();
+            LstSightseeing.ItemsSource = ConnectionClass.entities.Sightseeing
+.Where(x => x.IsDelete == false).ToList();
         }
 
         private void Change_Click(object sender, RoutedEventArgs e)
@@ -34,22 +36,30 @@ namespace Diplom.AdminPages
 
         private void Delete_Click(object sender, RoutedEventArgs e)
         {
-            // Получаем кнопку, по которой кликнули
-            Button button = sender as Button;
+            var sightseeing = LstSightseeing.SelectedItem as Sightseeing;
 
-            // Получаем товар, связанный с этой кнопкой
-            KazanSightPage sightToRemove = button.Tag as KazanSightPage;
-
-            if (sightToRemove != null)
+            if (sightseeing != null)
             {
-                // Удаляем из коллекции
-                MessageBox.Show("sdawds");
+                MessageBoxResult messageResult = MessageBox.Show("Вы действительно хотите перенести в архив выбранную экскурсию?", "Удаление", MessageBoxButton.YesNo);
+                if (messageResult == MessageBoxResult.Yes)
+                {
+                    Sightseeing DelSight = ConnectionClass.entities.Sightseeing.Where(x => x.Id_Sightseeing == sightseeing.Id_Sightseeing).FirstOrDefault();
+                    DelSight.IsDelete = true;
+                    ConnectionClass.entities.SaveChanges();
+                    LstSightseeing.ItemsSource = ConnectionClass.entities.Sightseeing
+                   .Where(x => x.IsDelete == false).ToList();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Для архивирования выберите экскурсию");
             }
         }
 
         private void Add_Click(object sender, RoutedEventArgs e)
         {
-
+            AddSightseeing window = new AddSightseeing();
+            window.Show();
         }
 
         private void Searc_TextChanged(object sender, TextChangedEventArgs e)
@@ -57,11 +67,12 @@ namespace Diplom.AdminPages
             string search = TxbSearch.Text;
             if (search != null)
             {
-                LstSight.ItemsSource = ConnectionClass.entities.KazanSight.Where(x => x.Name.Contains(search) || x.Description.Contains(search)).ToList();
+                LstSightseeing.ItemsSource = ConnectionClass.entities.Sightseeing.Where(x => x.Name.Contains(search) || x.Description.Contains(search) && x.IsDelete == false).ToList();
             }
             else
             {
-                LstSight.ItemsSource = ConnectionClass.entities.KazanSight.ToList();
+                LstSightseeing.ItemsSource = ConnectionClass.entities.Sightseeing
+.Where(x => x.IsDelete == false).ToList();
             }
         }
     }

@@ -16,20 +16,25 @@
         <StackPanel Orientation="Horizontal">
             <TextBlock Text="Поиск:"/>
             <TextBox x:Name="TxbSearch" TextChanged="Searc_TextChanged"/>
-        <Button x:Name="BtnAdd" Content="Добавить достопримечательность" Click="Add_Click"/>
+        <Button x:Name="BtnAdd" Content="Добавить экскурсию" Click="Add_Click"/>
+            <Button x:Name="BtnDelete" Content="Удалить" Click="Delete_Click" />
+            <Button x:Name="BtnChange" Content="Изменить" Click="Change_Click"/>
         </StackPanel>
-        <ListView Grid.Row ="1" x:Name="LstSight">
+        <ListView Grid.Row ="1" x:Name="LstSightseeing" ItemsSource="{Binding Sightseeing}">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
-                        <Image Source="{Binding Image}" Width="150" Height="150"/>
+                        <Image x:Name="ImgSight" Source="{Binding KazanSight.Image}" Width="150" Height="150"/>
                         <StackPanel>
-                            <TextBlock Text="{Binding Name}"/>
-                            <TextBlock Text="{Binding Description}"/>
-                            <!--переделать на краткое описание-->
+                            <TextBlock Text="{Binding Name}" x:Name="TxtName" />
+                            <TextBlock Text="{Binding Description}" x:Name="TxtDescriptionSightseeing"/>
+                            <TextBlock Text="{Binding TypeSightseeing.Name}" x:Name="TxtNameType"/>
+                            <TextBlock Text="{Binding TypeSightseeing.Description}" x:Name="TxtDescriptionType" />
                         </StackPanel>
-                        <Button x:Name="BtnDelete" Content="Удалить" Click="Delete_Click"  Tag="{Binding}"/>
-                        <Button x:Name="BtnChange" Content="Изменить" Click="Change_Click" Tag="{Binding}" />
+                        <StackPanel>
+                            <TextBlock Text="{Binding Cost}" x:Name="TxtCost"/>
+                            <TextBlock Text="{Binding Limit}" x:Name="TxtLimit"/>
+                        </StackPanel>
                     </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>
