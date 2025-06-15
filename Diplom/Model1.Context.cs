@@ -13,10 +13,10 @@ namespace Diplom
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class KazanSightEntities4 : DbContext
+    public partial class KazanSightEntities : DbContext
     {
-        public KazanSightEntities4()
-            : base("name=KazanSightEntities4")
+        public KazanSightEntities()
+            : base("name=KazanSightEntities")
         {
         }
     
@@ -32,6 +32,7 @@ namespace Diplom
         public virtual DbSet<Reservation> Reservation { get; set; }
         public virtual DbSet<Sightseeing> Sightseeing { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
+        public virtual DbSet<TypeSight> TypeSight { get; set; }
         public virtual DbSet<TypeSightseeing> TypeSightseeing { get; set; }
         public virtual DbSet<User> User { get; set; }
     }

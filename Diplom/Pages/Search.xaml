@@ -15,8 +15,11 @@
             <RowDefinition Height="5*"/>
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-            <TextBox x:Name ="TxbSearch" Width="1000" Height="50" Margin="30" TextChanged="textChanged"/>
+            <TextBox x:Name ="TxbSearch" Width="400" Height="50" Margin="30"/>
             <Button x:Name="BtnSearch" Content="Поиск" Width="100" Click="Search_Click"/>
+            <TextBlock Text="Выберите тип:" FontSize="25" TextWrapping="WrapWithOverflow" Width="170" Height="40" Margin ="80,0,0,0"/>
+            <ComboBox x:Name="CmbTypeSight"  Width="250" Height="50" ItemsSource="{Binding TypeSight.Name}"/>
+            <Button x:Name="BtnCancel" Content="Сбросить фильтр" Width="180" Margin="10" Click="Refresh_Click"/>
         </StackPanel>
         <ListView Grid.Row="1" x:Name="LstSight" ItemsSource="{Binding KazanSight}" MouseDoubleClick="Info_Click">
             <ListView.ItemTemplate>

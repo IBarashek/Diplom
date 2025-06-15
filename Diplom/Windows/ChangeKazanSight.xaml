@@ -12,6 +12,13 @@
             <TextBox x:Name="TxbName" />
             <TextBlock Text="Описание достопримечательности:"/>
             <TextBox x:Name="TxbDescription" />
+            <TextBlock Text="Местоположение достопримечательности:"/>
+            <TextBox x:Name="TxbLocation" />
+            <TextBlock Text="Время работы:"/>
+            <TextBox x:Name="TxbTime" />
+            <TextBlock Text="Контактные данные:"/>
+            <TextBox x:Name="TxbContacts" />
+            <ComboBox x:Name="CmbTypeSight" ItemsSource="{Binding TypeSight.Name}"/>
             <Image x:Name ="ImgSight" Width="100" Height="100"/>
             <StackPanel>
                 <TextBlock Text="Путь к файлу изображения:"/>

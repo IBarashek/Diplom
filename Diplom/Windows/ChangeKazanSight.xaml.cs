@@ -29,6 +29,8 @@ namespace Diplom.Windows
             currentSight = kazanSight;
             TxbName.Text = currentSight.Name;
             TxbDescription.Text = currentSight.Description;
+            CmbTypeSight.ItemsSource = ConnectionClass.entities.TypeSight.Select(x => x.Name).ToList();
+            CmbTypeSight.SelectedIndex = currentSight.Id_TypeSight - 1;
             TxtFile.Text = currentSight.Image;
             BitmapImage bitmap = new BitmapImage();
 
@@ -71,11 +73,18 @@ namespace Diplom.Windows
             string name = TxbName.Text;
             string description = TxbDescription.Text;
             string filePath = TxtFile.Text;
-            if (!String.IsNullOrEmpty(name) && !String.IsNullOrEmpty(description) && !String.IsNullOrEmpty(filePath))
+            string location = TxbLocation.Text;
+            string contacts = TxbContacts.Text;
+            string time = TxbTime.Text;
+            if (!String.IsNullOrEmpty(name) && !String.IsNullOrEmpty(description) && !String.IsNullOrEmpty(filePath) && CmbTypeSight.SelectedItem != null )
             {
                 currentSight.Name = name;
                 currentSight.Description = description;
                 currentSight.Image = filePath;
+                currentSight.Location = location;
+                currentSight.Contacts = contacts;
+                currentSight.WorkMode = time;
+                currentSight.Id_TypeSight = CmbTypeSight.SelectedIndex + 1;
                 ConnectionClass.entities.SaveChanges();
                 MessageBox.Show("Достопримечательность успешно изменена ");
                 this.Close();

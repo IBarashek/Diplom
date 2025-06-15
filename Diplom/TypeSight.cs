@@ -12,31 +12,19 @@ namespace Diplom
     using System;
     using System.Collections.Generic;
     
-    public partial class KazanSight
+    public partial class TypeSight
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public KazanSight()
+        public TypeSight()
         {
-            this.FavoritesKazanSight = new HashSet<FavoritesKazanSight>();
-            this.Sightseeing = new HashSet<Sightseeing>();
+            this.KazanSight = new HashSet<KazanSight>();
         }
     
-        public int Id_Sight { get; set; }
+        public int Id_TypeSight { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        public string Image { get; set; }
-        public int Id_Administrator { get; set; }
-        public bool IsDelete { get; set; }
-        public string Location { get; set; }
-        public string WorkMode { get; set; }
-        public string Contacts { get; set; }
-        public int Id_TypeSight { get; set; }
     
-        public virtual Administrator Administrator { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<FavoritesKazanSight> FavoritesKazanSight { get; set; }
-        public virtual TypeSight TypeSight { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Sightseeing> Sightseeing { get; set; }
+        public virtual ICollection<KazanSight> KazanSight { get; set; }
     }
 }

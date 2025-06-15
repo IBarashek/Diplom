@@ -24,6 +24,8 @@ namespace Diplom.Windows
         public AddKazanSight()
         {
             InitializeComponent();
+            CmbTypeSight.ItemsSource = ConnectionClass.entities.TypeSight.Select(x => x.Name).ToList();
+            
         }
 
         private void ChooseFile_Click(object sender, RoutedEventArgs e)
@@ -57,13 +59,21 @@ namespace Diplom.Windows
             string name = TxbName.Text;
             string description = TxbDescription.Text;
             string filePath = TxtFile.Text;
-            if (!String.IsNullOrEmpty(name) && !String.IsNullOrEmpty(description) && !String.IsNullOrEmpty(filePath))
+            string location = TxbLocation.Text;
+            string contacts = TxbContacts.Text;
+            string time = TxbTime.Text;
+
+            if (!String.IsNullOrEmpty(name) && !String.IsNullOrEmpty(description) && !String.IsNullOrEmpty(filePath) && CmbTypeSight.SelectedItem != null)
             {
                 KazanSight sight = new KazanSight()
                 {
                     Name = name,
                     Description = description,
                     Image = filePath,
+                    Location = location,
+                    Contacts = contacts,
+                    WorkMode = time,
+                    Id_TypeSight = CmbTypeSight.SelectedIndex + 1,
                     Id_Administrator = ConnectionClass.administrator.Id_Administrator
                 };
                 ConnectionClass.entities.KazanSight.Add(sight);

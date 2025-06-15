@@ -1,5 +1,6 @@
 ﻿using Diplom.Classes;
 using Diplom.Windows;
+using MaterialDesignColors;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,28 +27,25 @@ namespace Diplom.Pages
         {
             InitializeComponent();
             LstSight.ItemsSource = ConnectionClass.entities.KazanSight.ToList();
+            CmbTypeSight.ItemsSource = ConnectionClass.entities.TypeSight.Select(x => x.Name).ToList();
         }
 
         private void Search_Click(object sender, RoutedEventArgs e)
         {
             string search = TxbSearch.Text;
-            if (search != null)
-            {
-                LstSight.ItemsSource = ConnectionClass.entities.KazanSight.Where(x => x.Name.Contains(search) || x.Description.Contains(search)).ToList();
-            }
-            else
-            {
-                LstSight.ItemsSource = ConnectionClass.entities.KazanSight.ToList();
-            }
+
+                if (CmbTypeSight.SelectedItem != null)
+                {
+                    LstSight.ItemsSource = ConnectionClass.entities.KazanSight
+                        .Where(x => (x.Name.Contains(search) || x.Description.Contains(search)) && x.Id_TypeSight == CmbTypeSight.SelectedIndex + 1).ToList();
+                }
+                else
+                {
+                    LstSight.ItemsSource = ConnectionClass.entities.KazanSight.Where(x => x.Name.Contains(search) || x.Description.Contains(search)).ToList();
+                }
+
         }
 
-        private void textChanged(object sender, TextChangedEventArgs e)
-        {
-            if (TxbSearch.Text == "")
-            {
-                LstSight.ItemsSource = ConnectionClass.entities.KazanSight.ToList();
-            }
-        }
 
         private void Info_Click(object sender, MouseButtonEventArgs e)
         {
@@ -56,5 +54,9 @@ namespace Diplom.Pages
             info.Show();
         }
 
+        private void Refresh_Click(object sender, RoutedEventArgs e)
+        {
+            CmbTypeSight.SelectedItem = null;
+        }
     }
 }
