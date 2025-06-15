@@ -54,5 +54,11 @@ namespace Diplom.Pages
             ChangeData window = new ChangeData();
             window.Show();
         }
+
+        private void Exit_Click(object sender, RoutedEventArgs e)
+        {
+            ConnectionClass.currentUser = null;
+            NavigationService.Navigate(new Authorization());
+        }
     }
 }

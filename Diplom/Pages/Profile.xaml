@@ -21,7 +21,7 @@
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Top">
             <Button x:Name="BtnPhoto" Content="Изменить фотографию" Click="ChangePhoto_Click"/>
             <Button x:Name="BtnData" Content="Обновить данные" Click="ChangeData_Click"/>
-            
+            <Button x:Name="BtnExit" Content="Выйти из аккаунта" Click="Exit_Click"/>
         </StackPanel>
         <StackPanel Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
             <Image x:Name="ImgUser" Margin="50" Height =" 300" Width="300"/>

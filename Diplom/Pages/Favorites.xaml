@@ -21,8 +21,8 @@
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
                         <Image Source="{Binding Image}"/>
-                        <StackPanel>
-                            <TextBlock Text="{Binding Name}"/>
+                        <StackPanel Width="1000" Margin="20">
+                            <TextBlock Text="{Binding Name}" FontSize="15" FontWeight="Bold"/>
                             <TextBlock Text="{Binding Description}"/>
                         </StackPanel>
 

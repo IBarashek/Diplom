@@ -39,9 +39,6 @@
             <Button x:Name="BtnSightseeing" Click="Sightseeing_Click"  >
                 Экскурсии
             </Button>
-            <Button x:Name="BtnSettings" Click="Settings_Click" >
-                Настройки
-            </Button>
         </StackPanel>
     </Grid>
 </Page>

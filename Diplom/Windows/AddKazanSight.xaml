@@ -9,15 +9,15 @@
     <Grid>
         <StackPanel>
             <TextBlock Text="Название достопримечательности:"/>
-            <TextBox x:Name="TxbName" />
+            <TextBox x:Name="TxbName" TextWrapping="WrapWithOverflow"/>
             <TextBlock Text="Описание достопримечательности:"/>
-            <TextBox x:Name="TxbDescription" />
+            <TextBox x:Name="TxbDescription" TextWrapping="WrapWithOverflow"/>
             <TextBlock Text="Местоположение достопримечательности:"/>
-            <TextBox x:Name="TxbLocation" />
+            <TextBox x:Name="TxbLocation" TextWrapping="WrapWithOverflow"/>
             <TextBlock Text="Время работы:"/>
-            <TextBox x:Name="TxbTime" />
+            <TextBox x:Name="TxbTime" TextWrapping="WrapWithOverflow"/>
             <TextBlock Text="Контактные данные:"/>
-            <TextBox x:Name="TxbContacts" />
+            <TextBox x:Name="TxbContacts" TextWrapping="WrapWithOverflow"/>
             <ComboBox x:Name="CmbTypeSight" ItemsSource="{Binding TypeSight.Name}"/>
             <Image x:Name ="ImgSight" Width="100" Height="100"/>
             <StackPanel>

@@ -36,6 +36,9 @@ namespace Diplom.Windows
 
             TxtName.Text = sight.Name;
             TxtDescription.Text = sight.Description;
+            TxtContacts.Text = sight.Contacts;
+            TxtTime.Text = sight.WorkMode;
+            TxtTypeSight.Text = sight.TypeSight.Name;
 
             if (ConnectionClass.currentUser != null)
             {

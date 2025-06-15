@@ -24,6 +24,7 @@ namespace Diplom.Pages
         public Sightseeing()
         {
             InitializeComponent();
+            LstSight.ItemsSource = ConnectionClass.entities.Sightseeing.ToList();
         }
 
         private void Info_Click(object sender, MouseButtonEventArgs e)

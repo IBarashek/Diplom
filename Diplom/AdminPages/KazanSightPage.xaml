@@ -13,8 +13,8 @@
             <RowDefinition Height="1*"/>
             <RowDefinition Height="7*"/>
         </Grid.RowDefinitions>
-        <StackPanel Orientation="Horizontal">
-            <TextBlock Text="Поиск:"/>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
+            <TextBlock Text="Поиск:" VerticalAlignment="Center" Margin="80, 0,10,0"/>
             <TextBox x:Name="TxbSearch" TextChanged="Searc_TextChanged"/>
             <Button x:Name="BtnAdd" Content="Добавить достопримечательность" Click="Add_Click"/>
             <Button x:Name="BtnDelete" Content="Удалить" Click="Delete_Click" />
@@ -23,14 +23,13 @@
         <ListView Grid.Row ="1" x:Name="LstSight" ItemsSource="{Binding KazanSight}" >
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" >
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
                         <Image Source="{Binding Image}" Width="150" Height="150"/>
-                        <StackPanel>
-                            <TextBlock Text="{Binding Name}"/>
-                            <TextBlock Text="{Binding Description}"/>
+                        <StackPanel Width="1500" Margin="20">
+                            <TextBlock Text="{Binding Name}" FontSize="15" FontWeight="Bold"/>
+                            <TextBlock Text="{Binding Description}" TextWrapping="WrapWithOverflow"/>
                             <!--переделать на краткое описание-->
                         </StackPanel>
-                        
                     </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>

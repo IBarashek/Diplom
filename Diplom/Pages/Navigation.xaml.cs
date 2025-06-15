@@ -32,7 +32,8 @@ namespace Diplom.Pages
         }
         private void Profile_Click(object sender, RoutedEventArgs e)
         {
-            if(ConnectionClass.currentUser != null)
+            StartMonitoring();
+            if (ConnectionClass.currentUser != null)
             {
                 NavigatedFrame.NavigationService.Navigate(new Profile());
             }
@@ -54,13 +55,9 @@ namespace Diplom.Pages
 
         private void Sightseeing_Click(object sender, RoutedEventArgs e)
         {
-            //туры и бла бла бла
+            NavigatedFrame.NavigationService.Navigate(new Sightseeing());
         }
 
-        private void Settings_Click(object sender, RoutedEventArgs e)
-        {
-            //настройки, не знаю понадобятся ли они вообще
-        }
         private async void StartMonitoring() //набллюдение за изменениями 
         {
             bool t = true;

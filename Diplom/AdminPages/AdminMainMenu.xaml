@@ -18,6 +18,7 @@
             <Button x:Name="BtnKazanSight" Content="Достопримечательности" Click="KazanSight_Click"/>
             <Button x:Name="BtnSightseeing" Content="Экскурсии" Click="Sightseeing_Click"/>
         </StackPanel>
+        <TextBlock Text="Добро пожаловать на страницу администратора!" TextWrapping="Wrap" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="50" FontWeight="Bold"/>
         <Frame Grid.Row="1" x:Name="ListFrame"/>
     </Grid>
 </Page>

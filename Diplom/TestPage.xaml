@@ -1,0 +1,39 @@
+﻿<Page x:Class="Diplom.TestPage"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Diplom"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="TestPage">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="2*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Width="600"  Grid.RowSpan="2">
+            <Image x:Name="ImgSight"/>
+            <ScrollViewer  Grid.Row="1" >
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock x:Name="TxtName"/>
+                        <TextBlock x:Name="TxtTypeSight"/>
+                        <Button x:Name="BtnLike" Background="Transparent" BorderBrush="Transparent" Width="60" Height="60" Foreground="Gray" Click="Favorites_Click" >
+                            <materialDesign:PackIcon Kind="Heart" />
+                        </Button>
+                    </StackPanel>
+                    <TextBlock x:Name="TxtShortDescription"/>
+                    <TextBlock x:Name="TxtDescription"/>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock x:Name="TxtContacts"/>
+                        <TextBlock x:Name="TxtTime"/>
+                    </StackPanel>
+                </StackPanel>
+            </ScrollViewer>
+        </StackPanel>
+
+    </Grid>
+</Page>
